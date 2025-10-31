@@ -1,0 +1,293 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import TestimonialCarousel from '../components/TestimonialCarousel.jsx';
+import FAQAccordion from '../components/FAQAccordion.jsx';
+import Button from '../components/Button.astro';
+import services from '../data/services.json';
+import testimonials from '../data/testimonials.json';
+import logos from '../data/logos.json';
+
+const heroImage = 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop';
+
+const faqs = [
+  {
+    question: 'What is a remote assistant?',
+    answer: "Helm's remote assistants are hungry, humble and highly intelligent professionals and support you and your team in virtually any function. They work in your time zone and integrate with your team as deeply as you would like. Many of our client partners, within four months of hiring, say their remote assistant is as much a part of the team as the other people in their company."
+  },
+  {
+    question: 'What are the challenges and benefits of a remote assistant?',
+    answer: 'Remote assistants provide significant cost savings while maintaining high quality work. The main challenge is ensuring clear communication and proper onboarding, which our team helps facilitate. Benefits include flexible scaling, access to global talent, and specialized skills.'
+  },
+  {
+    question: 'How is Helm unique?',
+    answer: 'Helm provides ongoing coaching and professional development for every staff member. We screen over 3,000 candidates on average to find you the perfect match. Our assistants work in your time zone with native-level English proficiency.'
+  },
+  {
+    question: 'How does onboarding work?',
+    answer: 'We provide best practices for onboarding your new hire to save you time and get them up and running immediately. Our team supports both you and your new assistant throughout the onboarding process.'
+  },
+  {
+    question: 'How long will it take to find the right remote assistant with Helm?',
+    answer: 'We typically present your first candidate within 1-2 weeks. Over 80% of the time, the first candidate we propose gets hired. If needed, we extend our search to ensure your success.'
+  }
+];
+
+const howItWorksSteps = [
+  {
+    number: '01',
+    title: 'Share your needs',
+    description: "We'll create a Success Profile based on your needs and preferences. Our team will screen over 3,000 candidates, on average, to find you the perfect match."
+  },
+  {
+    number: '02',
+    title: 'Meet the perfect hire',
+    description: "You'll meet and screen the candidate. Over 80% of the time, the 1st candidate we propose gets hired. If you prefer to meet a new candidate, we extend our search to ensure your success!"
+  },
+  {
+    number: '03',
+    title: 'Delegate. Elevate.',
+    description: 'Best practices for onboarding your new hire will save you time and get them up and running immediately. Create more value and do more of what you love by letting go and delegating to the right support!'
+  }
+];
+---
+
+<Layout
+  title="Helm - Offshore Staffing Solutions"
+  description="We find hungry, humble, smart A-players that cost less than 50% of their U.S. equivalent. Expert staffing agency for offshore talent."
+>
+  <Hero
+    title="We find hungry, humble, smart A-players that cost less than 50% of their U.S. equivalent"
+    description="We're a staffing agency that finds the best offshore talent for your business."
+    primaryCTA={{ text: 'Request a quote', href: '/contact' }}
+    secondaryCTA={{ text: 'Learn more', href: '/how-it-works' }}
+    image={heroImage}
+    imageAlt="Professional executive assistant working remotely"
+  />
+
+  <section class="py-20 bg-brand-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-brand-navy mb-4">
+          What Our Clients Say
+        </h2>
+      </div>
+
+      <TestimonialCarousel testimonials={testimonials} client:load />
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-brand-navy mb-4">
+          Trusted by Leading Companies
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 items-center justify-items-center opacity-60">
+        {logos.map((logo) => (
+          <img
+            src={logo.image}
+            alt={logo.name}
+            class="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all"
+            width="120"
+            height="48"
+            loading="lazy"
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-brand-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-brand-navy mb-4">
+          What Your Helm Assistant Can Support You With
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service) => (
+          <ServiceCard
+            title={service.title}
+            description={service.description}
+            icon={service.icon}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-gradient-to-br from-brand-navy to-brand-navyDark text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-6">
+        Ready to Elevate Yourself And Your Team?
+      </h2>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+        <Button
+          href="/contact"
+          variant="primary"
+          size="lg"
+          track="cta-section"
+        >
+          Request a quote
+        </Button>
+        <Button
+          href="/how-it-works"
+          variant="outline"
+          size="lg"
+          track="cta-section-secondary"
+          class="border-white text-white hover:bg-white hover:text-brand-navy"
+        >
+          Learn more
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-brand-navy mb-4">
+          How Helm Works
+        </h2>
+      </div>
+
+      <div class="max-w-4xl mx-auto mb-16">
+        <div class="relative w-full" style="padding-bottom: 56.25%;">
+          <iframe
+            class="absolute top-0 left-0 w-full h-full rounded-2xl shadow-2xl"
+            src="https://www.youtube.com/embed/xGWBAliMJLY"
+            title="How Helm Works"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        {howItWorksSteps.map((step) => (
+          <div class="relative">
+            <div class="flex items-start space-x-4">
+              <span class="text-6xl font-bold text-brand-orange opacity-20">
+                {step.number}
+              </span>
+              <div class="flex-1">
+                <h3 class="text-2xl font-bold text-brand-navy mb-4">
+                  {step.title}
+                </h3>
+                <p class="text-brand-slate leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+        <Button
+          href="/contact"
+          variant="primary"
+          size="lg"
+          track="how-it-works-cta"
+        >
+          Request a quote
+        </Button>
+        <Button
+          href="/how-it-works"
+          variant="outline"
+          size="lg"
+          track="how-it-works-learn-more"
+        >
+          Learn more
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-brand-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+        <div>
+          <blockquote class="text-2xl sm:text-3xl font-bold text-brand-navy mb-6">
+            "Thanks to my Executive Assistant, I'm no longer stuck in the weeds."
+          </blockquote>
+          <p class="text-lg text-brand-slate">
+            <strong>DAVID ROSENBERG</strong><br />
+            CEO Aerofarms
+          </p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-lg border border-brand-border">
+          <h3 class="text-2xl font-bold text-brand-navy mb-6">
+            Helm's Support Staff is Vetted and Trained to Save You Time and Create Immediate Value
+          </h3>
+          <p class="text-brand-slate leading-relaxed mb-4">
+            With decades of experience helping business owners build companies, Helm will help you define the right success profile for your next hire.
+          </p>
+          <p class="text-brand-slate leading-relaxed mb-4">
+            All hires work in your time zone and bring native level English, verbal and spoken, for easy integration with your team.
+          </p>
+          <p class="text-brand-slate leading-relaxed">
+            We also identify key aspects of your culture to ensure values alignment. This helps you avoid the frustration many companies face by hiring the wrong person. One such hire can kill your culture.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-brand-navy to-brand-navyDark text-white rounded-3xl p-12">
+        <div class="max-w-4xl mx-auto">
+          <h3 class="text-2xl sm:text-3xl font-bold mb-6">
+            Every Staff Member Gets 1-on-1 Coaching from Helm's Dedicated Team of Professional Development Coaches
+          </h3>
+          <p class="text-xl text-gray-300 leading-relaxed">
+            We coach each staff member ongoingly in order to help them acquire new skills and tackle their greatest opportunity for professional growth. If you lack the experience or time to help your hire gain a particular skill, our coach can help.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-brand-navy mb-4">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-lg text-brand-slate">
+          The most important questions are often about the unknown unknowns – that is the stuff you're not thinking to ask but you really need to know. Let's hop on a call and get you the knowledge you really need!
+        </p>
+      </div>
+
+      <FAQAccordion faqs={faqs} client:load />
+
+      <div class="mt-12 bg-brand-light rounded-2xl p-8 text-center">
+        <h3 class="text-xl font-bold text-brand-navy mb-4">Still have questions?</h3>
+        <div class="space-y-2 mb-6">
+          <p class="text-brand-slate">
+            <strong>Email:</strong>{' '}
+            <a href="mailto:support@helm.ceo" class="text-brand-orange hover:text-brand-orangeDark">
+              support@helm.ceo
+            </a>
+          </p>
+          <p class="text-brand-slate">
+            <strong>Phone:</strong>{' '}
+            <a href="tel:+19175660364" class="text-brand-orange hover:text-brand-orangeDark">
+              917.566.0364
+            </a>
+          </p>
+        </div>
+        <Button
+          href="/contact"
+          variant="primary"
+          track="faq-cta"
+        >
+          Get in touch
+        </Button>
+      </div>
+    </div>
+  </section>
+</Layout>
